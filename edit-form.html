@@ -1,0 +1,14 @@
+<h1>Free Contact Form</h1>
+
+<form ng-submit="onSubmit()">
+First name:  <input type="text" ng-model="editdetail.firstname"/>
+<br><br>
+Last name:  <input type="text" name="last_name" ng-model="editdetail.lastname"/>
+<br><br>
+Email Addr:  <input type="email" name="email" ng-model="editdetail.emailaddress"/>
+<br><br>
+<input type="hidden" ng-model="editdetail._id"/>
+<input type="submit" value="submit" ng-click="onUpdate()" />
+
+
+</form>
