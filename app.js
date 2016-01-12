@@ -4,7 +4,8 @@ promoApp.directive('helloWorld', function () {
         return {
             restrict: 'E',
             templateUrl: 'checkbox.html',
-            controller: 'carController'
+            controller: 'carController',
+            controllerAs:'vm'
         }
     });
 
@@ -77,19 +78,20 @@ promoApp.config(function($stateProvider, $urlRouterProvider) {
 });
 
 promoApp.controller('carController', function($scope,$http, $location, Contact) {
+   var url="http://localhost:3000/api/contact/";
     $scope.txtbox = "";
     $scope.details="";
 $scope.put = function(detail){
-            $http.put('http://localhost:3000/api/contact/', { Id: detail._id, firstname: detail.fname })
+            $http.put(url, { Id: detail._id, firstname: detail.fname })
             .success(function (data, status, headers) {
-                $scope.ServerResponse = data;
-                console.log("***$scope.ServerResponse>>>> ",$scope.ServerResponse);
+          //      $scope.ServerResponse = data;
+           //     console.log("***$scope.ServerResponse>>>> ",$scope.ServerResponse);
                 //$scope.details
                 //$scope.ServerResponse = data;
             })
         }
 
-console.log($scope.detail);
+//console.log($scope.detail);
 if($scope.detail !== undefined) {
     $scope.detail = Contact.get();
 }
@@ -102,11 +104,11 @@ if($scope.detail !== undefined) {
 
 
      $scope.delete = function(detail){
-            $http.delete('http://localhost:3000/api/contact/' + detail._id)
+            $http.delete(url + detail._id)
             .success(function (data, status, headers) {
-                $scope.ServerResponse = data;
+               // $scope.ServerResponse = data;
                 $scope.reset();
-                console.log("***$scope.ServerResponse>>>> ",$scope.ServerResponse);
+               // console.log("***$scope.ServerResponse>>>> ",$scope.ServerResponse);
                 //$scope.details
                 //$scope.ServerResponse = data;
             })
@@ -120,7 +122,7 @@ if($scope.detail !== undefined) {
     }
     successCallback = function(data) {
     $scope.details=data.data;
-    console.log("///***data ",data.data);
+  //  console.log("///***data ",data.data);
    }
    var config = {
                 headers : {
@@ -128,15 +130,15 @@ if($scope.detail !== undefined) {
                 }
             }
     $scope.reset = function() {
-        console.log(config);
-        $http.get('http://localhost:3000/api/contact/', config).then(successCallback, errorCallback);
+     //   console.log(config);
+        $http.get(url, config).then(successCallback, errorCallback);
 
       };
 
    
 
     $scope.onClick = function(){
-        console.log($scope.txtbox);
+      //  console.log($scope.txtbox);
     }
     
 
@@ -153,14 +155,14 @@ if($scope.detail !== undefined) {
                     'Content-Type': 'application/json'
                 }
             }
-        console.log("$scope",$scope);
+       // console.log("$scope",$scope);
         if($scope.editdetail._id){
             data._id = $scope.editdetail._id;
-$http.put('http://localhost:3000/api/contact/'+data._id,data,config).success(function(data,status,headers,config){
+$http.put(url+data._id,data,config).success(function(data,status,headers,config){
 
         }); 
         }else{
-        $http.post('http://localhost:3000/api/contact/',data,config).success(function(data,status,headers,config){
+        $http.post(url,data,config).success(function(data,status,headers,config){
    $scope.reset();
         });    
         }
