@@ -5,8 +5,7 @@ promoApp.directive('helloWorld', function () {
             restrict: 'E',
             templateUrl: 'checkbox.html',
             controller: 'carController',
-            controllerAs:'vm'
-        }
+                   }
     });
 
         promoApp.service('Contact', function(){
@@ -90,7 +89,24 @@ $scope.put = function(detail){
                 //$scope.ServerResponse = data;
             })
         }
+$scope.cars = [
+        {
+            name: 'Maruti Suzuki',
+            type: 'Old',
+            price: 400000
 
+        },
+        {
+            name: 'Chevorlet Sparks',
+            type: 'New',
+            price: 600000
+        },
+        {
+            name: 'Honda Amaze',
+            type: 'Old',
+            price: 500000
+        }
+    ];
 //console.log($scope.detail);
 if($scope.detail !== undefined) {
     $scope.detail = Contact.get();
@@ -166,32 +182,8 @@ $http.put(url+data._id,data,config).success(function(data,status,headers,config)
    $scope.reset();
         });    
         }
-        
-
-    $scope.cars = [
-        {
-            name: 'Maruti Suzuki',
-            type: 'Old',
-            price: 400000
-
-        },
-        {
-            name: 'Chevorlet Sparks',
-            type: 'New',
-            price: 600000
-        },
-        {
-            name: 'Honda Amaze',
-            type: 'Old',
-            price: 500000
-        }
-    ];
-
-
     
-
-
-    }
+   }
     $scope.editdetail = Contact.get();    
     $scope.reset();
 

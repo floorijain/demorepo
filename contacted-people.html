@@ -12,21 +12,20 @@
     <tbody>  
         <tr ng-repeat="detail in details">
   
-            <td>
+    <td>
             	<div class="label_{{detail._id}}">{{detail.firstname}}</div>
-            	<div class="element_{{detail._id}}"><input type="text" ng-model="detail.firstname"/></div>
-            </td>
+            <!--	<div class="element_{{detail._id}}"><input type="text" ng-model="detail.firstname"/></div>
+                -->           </td>
             <td>
             	<div class="label_{{detail._id}}">{{detail.lastname}}</div>
-            	<div class="element_{{detail._id}}"><input type="text" ng-model="detail.lastname"/></div>
+            	<!--<div class="element_{{detail._id}}"><input type="text" ng-model="detail.lastname"/></div>-->
             </td>
             <td>
             	<div class="label_{{detail._id}}">{{detail.emailaddress}}</div>
-            	<div class="element_{{detail._id}}"><input type="text" ng-model="detail.emailaddress"/></div>
+            <!--	<div class="element_{{detail._id}}"><input type="text" ng-model="detail.emailaddress"/></div> -->
             </td>
             <td><button ng-click="delete(detail)" >Delete</button></td>
 <td><button ng-click="edit(detail)" >Edit</button></td>
-
 
 
         </tr>      
