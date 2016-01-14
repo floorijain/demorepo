@@ -1,13 +1,13 @@
 var promoApp = angular.module('promoApp', ['ui.router']);
 
-promoApp.directive('helloWorld', function () {
+/*promoApp.directive('helloWorld', function () {
         return {
             restrict: 'E',
             templateUrl: 'checkbox.html',
             controller: 'carController',
                    }
     });
-
+*/
         promoApp.service('Contact', function(){
             var tempData = {};
             this.get = function() {
@@ -28,7 +28,8 @@ promoApp.config(function($stateProvider, $urlRouterProvider) {
         // HOME 
         .state('home', {
             url: '/home',
-            templateUrl: 'partial-home.html'
+            templateUrl: 'partial-home.html',
+            controller:'homeController'
         })
         
         // nested list with custom controller
@@ -57,7 +58,7 @@ promoApp.config(function($stateProvider, $urlRouterProvider) {
         .state('contactedpeople', {
             url: '/contactedpeople',
             templateUrl: 'contacted-people.html',
-            controller: 'carController'
+            controller: 'contactController'
         })
         
         // ABOUT US PAGE
@@ -65,10 +66,11 @@ promoApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/aboutus',
             views: {
                 '': { templateUrl: 'partial-aboutus.html' },
-                'columnOne@aboutus': { template: 'Here is how we work' },
+                'columnOne@aboutus': { template: '<p></p>' },
                 'columnTwo@aboutus': { 
                     templateUrl: 'table-data.html',
-                    controller: 'carController'
+                    controller: 'carController',
+                    directive:'modal'
                 }
             }
             
@@ -78,7 +80,7 @@ promoApp.config(function($stateProvider, $urlRouterProvider) {
 
 promoApp.controller('carController', function($scope,$http, $location, Contact) {
    var url="http://localhost:3000/api/contact/";
-    $scope.txtbox = "";
+    //$scope.txtbox = "";
     $scope.details="";
 $scope.put = function(detail){
             $http.put(url, { Id: detail._id, firstname: detail.fname })
@@ -89,6 +91,7 @@ $scope.put = function(detail){
                 //$scope.ServerResponse = data;
             })
         }
+
 $scope.cars = [
         {
             name: 'Maruti Suzuki',
@@ -187,4 +190,10 @@ $http.put(url+data._id,data,config).success(function(data,status,headers,config)
     $scope.editdetail = Contact.get();    
     $scope.reset();
 
+$scope.showModal = false;
+    $scope.toggleModal = function(){
+        $scope.showModal = !$scope.showModal;
+    };
 });
+
+
