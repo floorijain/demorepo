@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>My Form</title>
+</head>
+<h3>
+My Form</h3>
+<form>
+<br>
+    <label>Enter Name</label><br>
+<input type="text" name="FirstName" ng-model="name"><br><br>
+<label>Gender</label><br>
+  <input type="radio" name="gender" value="string" ng-model="gender"> Male<br>
+  <input type="radio" name="gender" value="string" ng-model="gender"> Female<br><br>
+    <label>Friends</label><br>
+  <select ng-model="friends">
+  <option value="">Floori</option>
+    <option value="">Kamlesh</option>
+    <option value="">Sanjay</option>
+    <option value="">Mragank</option><br>
+	</select><br><br>
+    <label>Vehicles</label><br> 
+   <div class="check" ng-model="vehicle">
+<input type="checkbox" name="vehicle" value="Bike" ng-model=vehicle.bike>Bike<br>
+<input type="checkbox" name="vehicle" value="Car" ng-model=vehicle.car>Car<br>
+<input type="checkbox" name="vehicle" value="Cycle"ng-model=vehicle.cycle >Cycle 
+</div>
+	<br><br>
+  <input type="submit" value="Submit" ng-click="savedata()">		
+</form>
+
+</html>

@@ -1,4 +1,4 @@
-var promoApp = angular.module('promoApp', ['ui.router']);
+var promoApp = angular.module('promoApp', ['ui.router','schemaForm']);
 
 /*promoApp.directive('helloWorld', function () {
         return {
@@ -60,7 +60,22 @@ promoApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'contacted-people.html',
             controller: 'contactController'
         })
+        .state('form',{
+url:'/form',
+templateUrl:'partial-form.html',
+controller:'schemaController'
+        })
+           .state('myform',{
+url:'/myform',
+templateUrl:'form.html',
+controller:'formController'
+        })
         
+                  .state('autoform',{
+url:'/autoform',
+templateUrl:'auto.html',
+controller:'autoController'
+        })
         // ABOUT US PAGE
         .state('aboutus', {
             url: '/aboutus',
@@ -79,7 +94,7 @@ promoApp.config(function($stateProvider, $urlRouterProvider) {
 });
 
 promoApp.controller('carController', function($scope,$http, $location, Contact) {
-   var url="http://localhost:3000/api/contact/";
+   /*var url="http://localhost:3000/api/contact/";
     //$scope.txtbox = "";
     $scope.details="";
 $scope.put = function(detail){
@@ -90,7 +105,7 @@ $scope.put = function(detail){
                 //$scope.details
                 //$scope.ServerResponse = data;
             })
-        }
+        }*/
 
 $scope.cars = [
         {
@@ -111,7 +126,7 @@ $scope.cars = [
         }
     ];
 //console.log($scope.detail);
-if($scope.detail !== undefined) {
+/*if($scope.detail !== undefined) {
     $scope.detail = Contact.get();
 }
         $scope.edit = function(detail){
@@ -119,10 +134,10 @@ if($scope.detail !== undefined) {
         Contact.set(detail);
                     
             $location.path("/edit");
-        }
+        }*/
 
 
-     $scope.delete = function(detail){
+     /*$scope.delete = function(detail){
             $http.delete(url + detail._id)
             .success(function (data, status, headers) {
                // $scope.ServerResponse = data;
@@ -131,9 +146,9 @@ if($scope.detail !== undefined) {
                 //$scope.details
                 //$scope.ServerResponse = data;
             })
-        }
+        }*/
 
-    errorCallback = function(){
+    /*errorCallback = function(){
         //console.log(data);
         
 
@@ -153,7 +168,7 @@ if($scope.detail !== undefined) {
         $http.get(url, config).then(successCallback, errorCallback);
 
       };
-
+*/
    
 
     $scope.onClick = function(){
@@ -162,7 +177,7 @@ if($scope.detail !== undefined) {
     
 
 
-    $scope.onSubmit = function(){
+   /* $scope.onSubmit = function(){
         // use $.param jQuery function to serialize data from JSON 
         var data = {
           firstname: $scope.editdetail.firstname,
@@ -189,7 +204,7 @@ $http.put(url+data._id,data,config).success(function(data,status,headers,config)
    }
     $scope.editdetail = Contact.get();    
     $scope.reset();
-
+*/
 $scope.showModal = false;
     $scope.toggleModal = function(){
         $scope.showModal = !$scope.showModal;
