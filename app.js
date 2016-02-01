@@ -76,6 +76,13 @@ url:'/autoform',
 templateUrl:'auto.html',
 controller:'autoController'
         })
+        
+                          .state('interfaceform',{
+url:'/interfaceform',
+templateUrl:'interfaceform.html',
+controller:'interfacecontroller'
+        })
+        
         // ABOUT US PAGE
         .state('aboutus', {
             url: '/aboutus',

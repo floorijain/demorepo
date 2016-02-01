@@ -7,7 +7,7 @@ promoApp.controller('schemaController', function($scope,$http,$location) {
     properties: {
             
      firstname: { type: 'string', minLength: 2, title: 'First Name'},
-         
+      
           lastname: { type: 'string', minLength: 2, title: 'Last Name'},
      
      Primary_Contact: {

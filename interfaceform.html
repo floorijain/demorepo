@@ -1,0 +1,54 @@
+<h3>Interface Form</h3>
+
+<div ng-controller="interfacecontroller">
+  
+
+<!--    
+    <form name="userFormTwo" novalidate>
+    
+        <div class="form-group" ng-repeat="user in formDataTwo.users" ng-class="{ 'has-error' : userFieldForm.email.$invalid }">
+          
+        <ng-form name="userFieldForm">
+            <label>{{ user.name }}'s Email</label>
+            <input type="email" class="form-control" name="email" ng-model="user.email" required>
+ 
+        </ng-form>
+          
+        </div>
+        
+    </form>
+    
+    <pre><code>
+      {{ formDataTwo }}
+    </code></pre>-->
+      
+
+ 
+
+ <!--<td> <button ng-click="edit(property)" data-dismiss="modal">Modify</button></td>-->
+
+
+<form>
+     <br>
+    <label>Field Name</label>
+            <input type="text" name="FirstName" ng-model="name"><br><br>
+   <label>Field Type</label>
+   <select ng-model="type"> 
+       <option value="checkbox">Checkbox</option>
+    <option value="radios">Radios</option>
+    <option value="select">Dropdown</option>
+    <option value="text">TextBox</option>
+    
+   </select> </br>
+   
+        <label>Options</label>
+            <input type="text" name="FirstName" ng-model="Options"><br><br>
+            
+             <button type="submit" ng-click="edit()" >add field</button>
+        <button type="submit" ng-click="update(model)" >Update </button>
+       
+      
+    </form>
+    
+    
+       

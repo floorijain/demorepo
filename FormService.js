@@ -33,7 +33,7 @@ var url="http://localhost:3000/api/form";
 //                 console.log("data****: ",data[0]);
                 
                 //return angular.toJson(data);
-               return data[0];
+               //return data[0];
                 })
                 
                 return responseData;
