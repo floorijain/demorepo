@@ -71,6 +71,12 @@ templateUrl:'form.html',
 controller:'formController'
         })
         
+         .state('tableformat',{
+url:'/tableformat',
+templateUrl:'tableformat.html',
+controller:'tablecontroller'
+        })
+        
                   .state('autoform',{
 url:'/autoform',
 templateUrl:'auto.html',
@@ -82,6 +88,8 @@ url:'/interfaceform',
 templateUrl:'interfaceform.html',
 controller:'interfacecontroller'
         })
+        
+
         
         // ABOUT US PAGE
         .state('aboutus', {

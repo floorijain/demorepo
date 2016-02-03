@@ -33,48 +33,59 @@ promoApp.controller('interfacecontroller', function($scope,$http, Form){
   };
      }
 
-     if($scope.type === 'select'){
-             var objectAdd = [{
-         title : $scope.name,
-         type: $scope.type
-             }];
+if($scope.type === 'select'){
+             var titleMap = [
+                 {
+         name: $scope.Options,
+                 },
+          {
+         name: $scope.Options1,
+                            }                                
+             ];
  $scope.formAdd = {
               titleMap: titleMap,
-              key: $scope.name,
-               type : $scope.type,
-options: $scope.Options
+              key: $scope.name,
+               type : $scope.type,
+options: $scope.Options,
+options1: $scope.Options1
                             };
-     }
-     
+     }
+     
+// if($scope.type === 'select'){
+//     var titleMap=[{
+//         value: $scope.Options,
+//              }];
+// }
+// else
+//    {
+//        $scope.formAdd ={
+//               key: $scope.name,
+//        type: $scope.type,
+//        options:$scope.Options
+//    };
+//    }
 
 
      if($scope.type === 'radios'){
          var titleMap = {
-             name: $scope.Options,
+            
              value: $scope.Options
          };
           $scope.formAdd = {
-              titleMap: titleMap,
-              key: $scope.name,
-               type : $scope.type
+              titleMap : titleMap,
+              key: $scope.name,
+               type : $scope.type,
                             };
      }
      else{
-        $scope.formAdd = {
-              key: $scope.name,
-               type : $scope.type,
-               options : $scope.Options
-
-  };
-     }
-
     var objectAdd = {
          title : $scope.name,
          type: "string"
      };
+     
      
      $scope.data.schemaInfo.properties[$scope.name] = objectAdd;
-     
+     }
     console.log("updated Object",$scope.data.schemaInfo.properties[$scope.name]);
 
 
