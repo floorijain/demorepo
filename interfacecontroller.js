@@ -34,20 +34,20 @@ promoApp.controller('interfacecontroller', function($scope,$http, Form){
      }
 
 if($scope.type === 'select'){
-             var titleMap = [
-                 {
-         name: $scope.Options,
-                 },
-          {
-         name: $scope.Options1,
-                            }                                
-             ];
+             var titleMap = [];
+             var str = $scope.Options;
+              var dropOptions = str.split(",");
+             for(var i=0;i<dropOptions.length;i++){
+                 titleMap.push({name: dropOptions[i]});
+                //  console.log("dropOptions ",dropOptions[i]);
+                //  console.log("titleMap ",titleMap);
+             }
+
  $scope.formAdd = {
               titleMap: titleMap,
               key: $scope.name,
                type : $scope.type,
-options: $scope.Options,
-options1: $scope.Options1
+options: $scope.dropOptions
                             };
      }
      
