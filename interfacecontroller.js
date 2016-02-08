@@ -59,7 +59,8 @@ if($scope.type === 'checkbox'){
           angular.forEach(checkOptions, function (value, key) {
                 console.log("***value", value);
                 optionArray.push({
-           value: checkOptions
+           "value": value,
+"name":value
               })
             });
 }
@@ -67,11 +68,18 @@ if($scope.type === 'checkbox'){
           $scope.formAdd = {
               titleMap: optionArray,
               key: $scope.name,
-               type : $scope.type,
+               type : "checkboxes"
 
           }
-//      }
-//      else{
+var objectAdd ={
+    "items": {
+  "enum": checkOptions,
+  "type": "string",
+    },
+    "key":"checkbox",
+    "type":"array"      
+    
+};
 //         $scope.formAdd = {
 //               key: $scope.name,
 //                type : $scope.type,
@@ -112,29 +120,56 @@ options: $scope.dropOptions
 //    }
 
 
-     if($scope.type === 'radios'){
-                      var titleMap = [];
-             var str = $scope.Options;
-              var radioOptions = str.split(",");
-             for(var i=0;i<radioOptions.length;i++){
-                 titleMap.push({name: radioOptions[i],
-                 value: radioOptions[i]});
-                 console.log("radioOptions ",radioOptions[i]);
-                 console.log("titleMap ",titleMap);
-             }
+//      if($scope.type === 'radios'){
+//                       var titleMap = [];
+//              var str = $scope.Options;
+//               var radioOptions = str.split(",");
+//              for(var i=0;i<radioOptions.length;i++){
+//                  titleMap.push({name: radioOptions[i],
+//                  value: radioOptions[i]});
+//                  console.log("radioOptions ",radioOptions[i]);
+//                  console.log("titleMap ",titleMap);
+//              }
 
-          $scope.formAdd = {
-              titleMap : titleMap,
-              key: $scope.name,
-               type : $scope.type,
-                            };
-     }
-     else{
-    var objectAdd = {
-         title : $scope.name,
-         type: "string"
-     };
+//           $scope.formAdd = {
+//               titleMap : titleMap,
+//               key: $scope.name,
+//                type : $scope.type,
+//                             };
+//      }
+//      else{
+//     var objectAdd = {
+//          title : $scope.name,
+//          type: "string"
+//      };
      
+     if ($scope.type === "radios") {
+
+            var str = $scope.Options;
+            var radioOptions = str.split(",");
+            console.log("**display options", radioOptions);
+
+            angular.forEach(radioOptions, function (value, key) {
+                console.log("***value", value);
+                optionArray.push({
+                    "value": value,
+                    "name": value
+                })
+            });
+
+            $scope.formAdd = {
+                key: $scope.name,
+                type: "radios",
+
+                "titleMap": optionArray
+            };
+
+            var objectAdd = {
+                "enum": radioOptions,
+                title: $scope.name,
+                type: "string"
+
+            };
      
      $scope.data.schemaInfo.properties[$scope.name] = objectAdd;
      }
@@ -230,5 +265,49 @@ var url='http://localhost:3000/api/formschema';
         })
        
     }
+    $scope.editField=function(formfield){
+         $scope.name = formfield.key;
+        console.log($scope.form);
+    }
+    
+//     $scope.update=function(formfield){
+//         var formSelect = document.getElementById("fieldType");
+//         var selecteddata = formSelect.options[formSelect.selectedIndex].value;
+//         console.log("entered");
+//         for (var i = 0; i < $scope.form.length; i++) {
+
+//             if ($scope.form[i].key == formfield.key) {
+
+//                 if($scope.type === 'select'){
+//              var titleMap = [];
+//              var str = $scope.Options;
+//               var dropOptions = str.split(",");
+//              for(var i=0;i<dropOptions.length;i++){
+//                  titleMap.push({name: dropOptions[i]});
+//                  console.log("dropOptions ",dropOptions[i]);
+//                  console.log("titleMap ",titleMap);
+//              }
+
+//  $scope.formAdd = {
+//               titleMap: titleMap,
+//               key: $scope.name,
+//                type : $scope.type,
+// options: $scope.dropOptions
+//                             };
+
+//                     // $scope.data.schemaInfo.properties[$scope.fieldName] = formAdd;
+
+//                     var data = $scope.data;
+//                     // console.log("data object while put : ", data);
+
+//                    var url='http://localhost:3000/api/formschema';
+//                 $http.put(url +"/" +$scope.data._id, data).success(function (data, status, headers) {
+//                         console.log("data: ", angular.toJson(data));
+
+//                         console.log("submit after push: ", data);
+//                     })
+//                 }   }
+//             }
+//             }
     
     });
