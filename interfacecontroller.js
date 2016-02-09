@@ -1,3 +1,4 @@
+
 promoApp.controller('interfacecontroller', function($scope,$http, Form){
   
   
@@ -38,37 +39,37 @@ promoApp.controller('interfacecontroller', function($scope,$http, Form){
 //          }];
 //           $scope.formAdd = {
 //               titleMap: titleMap,
-//               key: $scope.name,
-//                type : $scope.type
+//               key: $scope.name,
+//                type : $scope.type
 //                             };
 //      }
 //      else{
 //         $scope.formAdd = {
-//               key: $scope.name,
-//                type : $scope.type,
-//                options : $scope.Options
+//               key: $scope.name,
+//                type : $scope.type,
+//                options : $scope.Options
 
-//   };
+//   };
 //      }
 var optionArray =[];
 if($scope.type === 'checkbox'){
          var titleMap ={};
                 
          var str = $scope.Options;
-              var checkOptions = str.split(",");
-          angular.forEach(checkOptions, function (value, key) {
-                console.log("***value", value);
-                optionArray.push({
-           "value": value,
+              var checkOptions = str.split(",");
+          angular.forEach(checkOptions, function (value, key) {
+                console.log("***value", value);
+                optionArray.push({
+           "value": value,
 "name":value
-              })
-            });
-}
+              })
+            });
+
              
           $scope.formAdd = {
               titleMap: optionArray,
-              key: $scope.name,
-               type : "checkboxes"
+              key: $scope.name,
+               type : "checkboxes"
 
           }
 var objectAdd ={
@@ -80,17 +81,11 @@ var objectAdd ={
     "type":"array"      
     
 };
-//         $scope.formAdd = {
-//               key: $scope.name,
-//                type : $scope.type,
-//                options : $scope.Options
-
-//   };
-//      }
+    }
 if($scope.type === 'select'){
              var titleMap = [];
              var str = $scope.Options;
-              var dropOptions = str.split(",");
+              var dropOptions = str.split(",");
              for(var i=0;i<dropOptions.length;i++){
                  titleMap.push({name: dropOptions[i]});
                  console.log("dropOptions ",dropOptions[i]);
@@ -104,45 +99,7 @@ if($scope.type === 'select'){
 options: $scope.dropOptions
                             };
      }
-     
-// if($scope.type === 'select'){
-//     var titleMap=[{
-//         value: $scope.Options,
-//              }];
-// }
-// else
-//    {
-//        $scope.formAdd ={
-//               key: $scope.name,
-//        type: $scope.type,
-//        options:$scope.Options
-//    };
-//    }
-
-
-//      if($scope.type === 'radios'){
-//                       var titleMap = [];
-//              var str = $scope.Options;
-//               var radioOptions = str.split(",");
-//              for(var i=0;i<radioOptions.length;i++){
-//                  titleMap.push({name: radioOptions[i],
-//                  value: radioOptions[i]});
-//                  console.log("radioOptions ",radioOptions[i]);
-//                  console.log("titleMap ",titleMap);
-//              }
-
-//           $scope.formAdd = {
-//               titleMap : titleMap,
-//               key: $scope.name,
-//                type : $scope.type,
-//                             };
-//      }
-//      else{
-//     var objectAdd = {
-//          title : $scope.name,
-//          type: "string"
-//      };
-     
+    
      if ($scope.type === "radios") {
 
             var str = $scope.Options;
@@ -170,14 +127,27 @@ options: $scope.dropOptions
                 type: "string"
 
             };
-     
-     $scope.data.schemaInfo.properties[$scope.name] = objectAdd;
-     }
-    console.log("updated Object",$scope.data.schemaInfo.properties[$scope.name]);
+     }
+            
+            if ($scope.type === "text"){
+                $scope.formAdd={
+                     key: $scope.name,
+                fieldType: $scope.type
+                };
+                var objectAdd={
+                    title: $scope.name,
+                type: "string"
+                };
+            }
+            
+     
+     $scope.data.schemaInfo.properties[$scope.name] = objectAdd;
+     
+    console.log("updated Object",$scope.data.schemaInfo.properties[$scope.name]);
 
 
-      $scope.form.splice(length-1,0,$scope.formAdd);
-    console.log("updated form",$scope.form);
+      $scope.form.splice(length-1,0,$scope.formAdd);
+    console.log("updated form",$scope.form);
 
     }
     
@@ -197,18 +167,18 @@ options: $scope.dropOptions
     
  $scope.deleteField= function(formfield){
 console.log(formfield);
-        var index = $scope.form.indexOf(formfield);
-        $scope.form.splice(index, 1);
-        console.log("****deleted", $scope.form);
+        var index = $scope.form.indexOf(formfield);
+        $scope.form.splice(index, 1);
+        console.log("****deleted", $scope.form);
 
-        var data = $scope.data;
-        console.log("data object while put : ", data);
+        var data = $scope.data;
+        console.log("data object while put : ", data);
  var url='http://localhost:3000/api/formschema';
-     $http.put(url +"/" +$scope.data._id, data).success(function (data, status, headers) {
-//             console.log("data: ", angular.toJson(data));
+     $http.put(url +"/" +$scope.data._id, data).success(function (data, status, headers) {
+//             console.log("data: ", angular.toJson(data));
 
-//             console.log("submit after push: ", data);
-         })
+//             console.log("submit after push: ", data);
+         })
  $scope.editField=function(formfield){
      $scope.name = formfield.key;
         console.log($scope.form);
@@ -234,7 +204,7 @@ console.log(formfield);
        var data = $scope.data;
         console.log("data object while put : ", data);
 var url='http://localhost:3000/api/formschema';
-         $http.put(url +"/" +$scope.data._id, data).success(function (data, status, headers) {
+         $http.put(url +"/" +$scope.data._id, data).success(function (data, status, headers) {
             console.log("data: ", angular.toJson(data));
 
             console.log("submit after push: ", data);
@@ -258,7 +228,7 @@ var url='http://localhost:3000/api/formschema';
        var data = $scope.data;
         console.log("data object while put : ", data);
 var url='http://localhost:3000/api/formschema';
-                $http.put(url +"/" +$scope.data._id, data).success(function (data, status, headers) {
+                $http.put(url +"/" +$scope.data._id, data).success(function (data, status, headers) {
             console.log("data: ", angular.toJson(data));
 
             console.log("submit after push: ", data);
@@ -281,7 +251,7 @@ var url='http://localhost:3000/api/formschema';
 //                 if($scope.type === 'select'){
 //              var titleMap = [];
 //              var str = $scope.Options;
-//               var dropOptions = str.split(",");
+//               var dropOptions = str.split(",");
 //              for(var i=0;i<dropOptions.length;i++){
 //                  titleMap.push({name: dropOptions[i]});
 //                  console.log("dropOptions ",dropOptions[i]);
@@ -301,7 +271,7 @@ var url='http://localhost:3000/api/formschema';
 //                     // console.log("data object while put : ", data);
 
 //                    var url='http://localhost:3000/api/formschema';
-//                 $http.put(url +"/" +$scope.data._id, data).success(function (data, status, headers) {
+//                 $http.put(url +"/" +$scope.data._id, data).success(function (data, status, headers) {
 //                         console.log("data: ", angular.toJson(data));
 
 //                         console.log("submit after push: ", data);
