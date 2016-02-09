@@ -12,45 +12,11 @@ promoApp.controller('interfacecontroller', function($scope,$http, Form){
      
     //console.log("data form", $scope.form);
    });
-//           $http.get('http://localhost:3000/api/contact/', config).then(successCallback, errorCallback);
-//                             errorCallback = function(){
-//         //console.log(data);
 
-//     }
-//     successCallback = function(data) {
-//     $scope.details=data.data;
-//   //  console.log("///***data ",data.data);
-//    }
-//     $scope.details=data.data;
-               
-//                var config = {
-//                 headers : {
-//                     'Content-Type': 'application/json'
-//                 }
-//                };
              
 
 
     $scope.edit = function () {
-//     if($scope.type === 'checkbox'){
-//          var titleMap = [{
-//              name: $scope.Options,
-//              value: $scope.Options
-//          }];
-//           $scope.formAdd = {
-//               titleMap: titleMap,
-//               key: $scope.name,
-//                type : $scope.type
-//                             };
-//      }
-//      else{
-//         $scope.formAdd = {
-//               key: $scope.name,
-//                type : $scope.type,
-//                options : $scope.Options
-
-//   };
-//      }
 var optionArray =[];
 if($scope.type === 'checkbox'){
          var titleMap ={};
@@ -90,7 +56,14 @@ if($scope.type === 'select'){
                  titleMap.push({name: dropOptions[i]});
                  console.log("dropOptions ",dropOptions[i]);
                  console.log("titleMap ",titleMap);
-             }
+             
+    }
+     var objectAdd = {
+                "enum": dropOptions,
+                title: $scope.fieldName,
+                type: "string"
+
+            };
 
  $scope.formAdd = {
               titleMap: titleMap,
